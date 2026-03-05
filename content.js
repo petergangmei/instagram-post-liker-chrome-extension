@@ -1,10 +1,13 @@
 let isRunning = false;
 let timeoutId = null;
+let likedCount = 0;
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "start") {
     if (!isRunning) {
       isRunning = true;
+      likedCount = 0; // Reset session count
+      chrome.storage.local.set({ likedCount: 0 });
       console.log("Instagram Liker started");
       runCycle();
     }
@@ -29,6 +32,8 @@ async function runCycle() {
     if (likeBtn) {
       console.log("Liking post...");
       likeBtn.click();
+      likedCount++;
+      chrome.storage.local.set({ likedCount: likedCount });
       // Wait a bit for the like to register before clicking next
       await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
     } else {

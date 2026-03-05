@@ -23,5 +23,22 @@ function updateStatus(isRunning) {
     }
 }
 
-// Check if it's already running (simplified for now)
-// In a real app, we'd use chrome.storage to persist state
+// Update the counter in the UI
+function updateCounter(count) {
+    const counterEl = document.getElementById('counter');
+    if (counterEl) {
+        counterEl.textContent = `Liked in this session: ${count || 0}`;
+    }
+}
+
+// Initial state load
+chrome.storage.local.get(['likedCount'], (result) => {
+    updateCounter(result.likedCount);
+});
+
+// Listen for storage changes from content script
+chrome.storage.onChanged.addListener((changes, namespace) => {
+    if (namespace === 'local' && changes.likedCount) {
+        updateCounter(changes.likedCount.newValue);
+    }
+});

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Instagram Liker</title>
   <style>
@@ -10,11 +11,13 @@
       background: #fafafa;
       text-align: center;
     }
+
     h1 {
       font-size: 16px;
       margin-bottom: 20px;
       color: #262626;
     }
+
     button {
       width: 100%;
       padding: 10px;
@@ -25,36 +28,52 @@
       font-weight: 600;
       transition: background 0.2s;
     }
+
     #start {
       background: #0095f6;
       color: white;
     }
+
     #start:hover {
       background: #1877f2;
     }
+
     #stop {
       background: #efefef;
       color: #262626;
     }
+
     #stop:hover {
       background: #dbdbdb;
     }
+
     #status {
       margin-top: 15px;
       font-size: 12px;
       color: #8e8e8e;
     }
+
     .running {
       color: #00aa00 !important;
       font-weight: bold;
     }
+
+    #counter {
+      margin-top: 5px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #262626;
+    }
   </style>
 </head>
+
 <body>
   <h1>Instagram Liker</h1>
   <button id="start">Start Automation</button>
   <button id="stop">Stop Automation</button>
   <div id="status">Status: Idle</div>
+  <div id="counter">Liked in this session: 0</div>
   <script src="popup.js"></script>
 </body>
+
 </html>
